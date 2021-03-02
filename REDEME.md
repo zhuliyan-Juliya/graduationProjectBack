@@ -15,4 +15,5 @@
 切换到 D 盘（data/db），启动数据库，`mongod`
 
 2、启动服务
-`node ./app.js`
+nodemon 可以热更新更改的文件，没有需要安装
+`node ./app.js || nodemon ./app.js`

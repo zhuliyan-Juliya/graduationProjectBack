@@ -8,7 +8,11 @@ var router = express.Router()
 
 router.get('/about/hh', (req, res) => {
   // console.log('req', req);
-  res.send('hello zhuliya12157567567321')
+  res.status(200).send({
+    data: {
+      info : 'hello zhuliya12157567567321'
+    }
+  })
 })
 
 module.exports = router
