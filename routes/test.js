@@ -6,11 +6,11 @@ var router = express.Router()
 
 // router.get('/')
 
-router.get('/about/hh', (req, res) => {
+router.get('/about/bb', (req, res) => {
   // console.log('req', req);
   res.status(200).send({
     data: {
-      info : 'hello zhuliya12157567567321'
+      info: 'hello juliya12157567567321'
     }
   })
 })

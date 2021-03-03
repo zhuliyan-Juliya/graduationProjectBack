@@ -41,5 +41,6 @@ var funGetContentType = function (filePath) {
 }
 
 module.exports = function (app) {
-  app.use('/test', require('./test'))
+  app.use('/api', require('./company'))
+  app.use('/api', require('./test'))
 }
