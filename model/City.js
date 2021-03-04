@@ -4,15 +4,12 @@ let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
-let CompanySchema = new mongoose.Schema({
-  name: String,
-  typeText: String,
-  parent_name: String,
-  short_name: String,
-  scheme: String,
+let CitySchema = new mongoose.Schema({
+  region_name: String,
+  region_id: Number,
   status: Number,
   meta: {
-    createAt: {
+    creatAt: {
       type: Date,
       default: Date.now()
     },
@@ -23,14 +20,14 @@ let CompanySchema = new mongoose.Schema({
   }
 })
 
-CompanySchema.pre('save', function (next) {
-
+CitySchema.pre('save', function (next) {
+  // isNew
   if (true) {
-    this.meta.createAt = this.meta.updateAt = Date.now()
+    this.meta.creatAt = this.meta.updateAt = Date.now()
   } else {
     this.meta.updateAt = Date.now()
   }
   next()
 })
 
-module.exports = mongoose.model('Company', CompanySchema)
+module.exports = mongoose.model('City', CitySchema)
