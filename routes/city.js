@@ -51,5 +51,16 @@ router.put('/city/edit', (req, res) => {
     res.status(200).send(resultConfig.success)
   })
 })
+// 修改状态
+router.post('/city/status', (req, res) => {
+  City.findByIdAndUpdate(req.body.id, req.body, (error, updateObj) => {
+    if (error) {
+      res.status(200).send(resultConfig.paramsError)
+      return
+    }
+
+    res.status(200).send(resultConfig.success)
+  })
+})
 
 module.exports = router
