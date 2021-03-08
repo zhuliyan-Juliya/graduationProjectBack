@@ -7,10 +7,10 @@ let resultConfig = require('../libs/result.config')
 
 var mongoose = require('mongoose')
 
-let Category = mongoose.model('Category')
+let Designation = mongoose.model('Designation')
 
-router.get('/category/list', (req, res) => {
-  Category.find().then((result) => {
+router.get('/designation/list', (req, res) => {
+  Designation.find().then((result) => {
     if (Array.isArray(result)) {
 
       res.status(200).send(Object.assign({}, resultConfig.success, {
@@ -20,12 +20,12 @@ router.get('/category/list', (req, res) => {
   })
 })
 // 新增
-router.post('/category/add', (req, res) => {
+router.post('/designation/add', (req, res) => {
 
-  function saveCategory (body) {
-    let category = new Category(body)
+  function saveItem (body) {
+    let designation = new Designation(body)
 
-    category.save().then((result) => {
+    designation.save().then((result) => {
       if (result) {
         res.status(200).send(resultConfig.success)
       }
@@ -33,29 +33,29 @@ router.post('/category/add', (req, res) => {
   }
 
   if (req.body.pid) {
-    Category.findById({ _id: req.body.pid }).then(findResult => {
+    Designation.findById({ _id: req.body.pid }).then(findResult => {
       req.body.parent = findResult
 
-      saveCategory(req.body)
+      saveItem(req.body)
     })
   } else {
-    saveCategory(req.body)
+    saveItem(req.body)
   }
 })
 
 // 删除
-router.delete('/category/delete', (req, res) => {
-  Category.findByIdAndRemove(req.body.id, (res1) => {
+router.delete('/designation/delete', (req, res) => {
+  Designation.findByIdAndRemove(req.body.id, (res1) => {
     res.status(200).send(resultConfig.success)
   })
 })
 // 编辑
-router.put('/category/edit', (req, res) => {
+router.put('/designation/edit', (req, res) => {
   if (req.body.pid) {
-    Category.findById({ _id: req.body.pid }).then(findResult => {
+    Designation.findById({ _id: req.body.pid }).then(findResult => {
       req.body.parent = findResult
 
-      Category.findByIdAndUpdate(req.body._id, req.body, (error, updateObj) => {
+      Designation.findByIdAndUpdate(req.body._id, req.body, (error, updateObj) => {
         if (error) {
           res.status(200).send(resultConfig.paramsError)
           return
@@ -67,7 +67,7 @@ router.put('/category/edit', (req, res) => {
     })
   } else {
 
-    Category.findByIdAndUpdate(req.body._id, req.body, (error, updateObj) => {
+    Designation.findByIdAndUpdate(req.body._id, req.body, (error, updateObj) => {
       if (error) {
         res.status(200).send(resultConfig.paramsError)
         return
@@ -80,8 +80,8 @@ router.put('/category/edit', (req, res) => {
 
 })
 // 修改状态
-router.post('/category/status', (req, res) => {
-  Category.findByIdAndUpdate(req.body.id, req.body, (error, updateObj) => {
+router.post('/designation/status', (req, res) => {
+  Designation.findByIdAndUpdate(req.body.id, req.body, (error, updateObj) => {
     if (error) {
       res.status(200).send(resultConfig.paramsError)
       return

@@ -23,7 +23,7 @@ let CategorySchema = new mongoose.Schema({
 
 CategorySchema.pre('save', function (next) {
   // isNew
-  if (true) {
+  if (this.isNew) {
     this.meta.creatAt = this.meta.updateAt = Date.now()
   } else {
     this.meta.updateAt = Date.now()

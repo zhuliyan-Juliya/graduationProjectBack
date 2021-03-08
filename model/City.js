@@ -22,7 +22,7 @@ let CitySchema = new mongoose.Schema({
 
 CitySchema.pre('save', function (next) {
   // isNew
-  if (true) {
+  if (this.isNew) {
     this.meta.creatAt = this.meta.updateAt = Date.now()
   } else {
     this.meta.updateAt = Date.now()

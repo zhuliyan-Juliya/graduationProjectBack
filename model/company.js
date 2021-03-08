@@ -24,8 +24,8 @@ let CompanySchema = new mongoose.Schema({
 })
 
 CompanySchema.pre('save', function (next) {
-
-  if (true) {
+  // isNew 是mongoose提供的
+  if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
   } else {
     this.meta.updateAt = Date.now()

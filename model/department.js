@@ -21,8 +21,10 @@ let DepartmentSchema = new mongoose.Schema({
 })
 
 DepartmentSchema.pre('save', function (next) {
-  // isNew
-  if (true) {
+  console.log('---------------------------------------------------------')
+  console.log('this.isNew', this.isNew)
+  console.log('---------------------------------------------------------')
+  if (this.isNew) {
     this.meta.creatAt = this.meta.updateAt = Date.now()
   } else {
     this.meta.updateAt = Date.now()

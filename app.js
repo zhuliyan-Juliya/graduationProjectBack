@@ -18,8 +18,6 @@ db.once('open', () => {
 // 遍历模型文件夹，统一引入
 let models_path = path.join(__dirname, '/model')
 let walk = (models_path) => {
-  console.log(models_path);
-  console.log('fs', fs.readdirSync(models_path));
   fs.readdirSync(models_path).forEach((file) => {
     var filePath = path.join(models_path, '/' + file)
     var stat = fs.statSync(filePath)

@@ -38,6 +38,7 @@ router.delete('/company/delete', (req, res) => {
 // 编辑
 router.put('/company/edit', (req, res) => {
   Company.findByIdAndUpdate(req.body._id, req.body, (error, updateObj) => {
+    // console.log('error', updateObj)
     if (error) {
       res.status(200).send(resultConfig.paramsError)
       return
