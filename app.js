@@ -12,24 +12,24 @@ mongoose.connect(dbConfig)
 let db = mongoose.connection;
 
 db.once('open', () => {
-  console.log('数据库链接成功');
+	console.log('数据库链接成功');
 })
 
 // 遍历模型文件夹，统一引入
 let models_path = path.join(__dirname, '/model')
 let walk = (models_path) => {
-  fs.readdirSync(models_path).forEach((file) => {
-    var filePath = path.join(models_path, '/' + file)
-    var stat = fs.statSync(filePath)
+	fs.readdirSync(models_path).forEach((file) => {
+		var filePath = path.join(models_path, '/' + file)
+		var stat = fs.statSync(filePath)
 
-    if (stat.isFile()) {//判断是否文件
-      if (/(.*)\.(js|coffee)/.test(file)) {
-        require(filePath)
-      }
-    } else if (stat.isDirectory()) {//判断是否文件夹
-      walk(filePath)
-    }
-  })
+		if (stat.isFile()) {//判断是否文件
+			if (/(.*)\.(js|coffee)/.test(file)) {
+				require(filePath)
+			}
+		} else if (stat.isDirectory()) {//判断是否文件夹
+			walk(filePath)
+		}
+	})
 }
 walk(models_path)
 
@@ -48,5 +48,5 @@ routes(app)
 
 let port = 5000;
 app.listen(port, () => {
-  console.log(`app is running at port ${port}`);
+	console.log(`app is running at port ${port}`);
 })

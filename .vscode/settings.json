@@ -25,6 +25,6 @@
           "bracketSpacing": true,
           "proseWrap": "preserve", // 代码超出是否要换行 preserve保留
       }
-  },
+	},
   // less设置
 }
