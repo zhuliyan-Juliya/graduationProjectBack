@@ -41,10 +41,13 @@ var funGetContentType = function (filePath) {
 }
 
 module.exports = function (app) {
-	app.use('/api', require('./company'))
 	app.use('/api', require('./test'))
-	app.use('/api', require('./department'))
-	app.use('/api', require('./designation'))
-	app.use('/api', require('./category'))
-	app.use('/api', require('./city'))
+	// 组织
+	app.use('/api', require('./organization/company'))
+	app.use('/api', require('./organization/department'))
+	app.use('/api', require('./organization/designation'))
+	app.use('/api', require('./organization/category'))
+	app.use('/api', require('./organization/city'))
+	// 组织
+	app.use('/api', require('./staff/employee'))
 }

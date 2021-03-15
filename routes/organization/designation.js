@@ -3,7 +3,7 @@
 var express = require('express')
 var http = require('http')
 var router = express.Router()
-let resultConfig = require('../libs/result.config')
+let resultConfig = require('../../libs/result.config')
 
 var mongoose = require('mongoose')
 
