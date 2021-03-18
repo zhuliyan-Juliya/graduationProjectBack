@@ -17,3 +17,19 @@ module.exports.FindCollectionDataByID = (CollectionObj, id = '') => {
 		}
 	})
 }
+/**
+* 求两个日期之间相差 多少年 多少月 多少天
+* @param {date} String - 时间格式得字符串
+* @returns {String}
+*/
+module.exports.ComputedBalanceDate = (date) => {
+	let target = new Date(date).getTime()
+	let now = new Date().getTime()
+	let runTime = now - target
+	let year = Math.floor(runTime / (365 * 24 * 60 * 60 * 1000))
+	runTime = runTime % (365 * 24 * 60 * 60 * 1000)
+	let month = Math.floor(runTime / (30 * 24 * 60 * 60 * 1000))
+	runTime = runTime % (30 * 24 * 60 * 60 * 1000)
+	let day = Math.floor(runTime / (24 * 60 * 60 * 1000));
+	return `${year}年${month}月${day}天`
+}

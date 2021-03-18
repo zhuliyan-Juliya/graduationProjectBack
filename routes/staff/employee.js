@@ -8,12 +8,15 @@ let Category = mongoose.model('Category')
 let City = mongoose.model('City')
 let Company = mongoose.model('Company')
 let Department = mongoose.model('Department')
-const { FindCollectionDataByID } = require('../../libs/util')
+const { FindCollectionDataByID, ComputedBalanceDate } = require('../../libs/util')
 
 // 员工列表
 router.get('/employee/list', (req, res) => {
 	Employee.find().then(result => {
 		if (Array.isArray(result)) {
+			result.forEach(item => {
+				item.runTime = ComputedBalanceDate(item.join_time);
+			})
 			res.status(200).send(Object.assign({}, resultConfig.success, {
 				data: result.reverse()
 			}))

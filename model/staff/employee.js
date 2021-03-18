@@ -25,6 +25,7 @@ let EmployeeSchema = new mongoose.Schema({
 	city_id: String,//	工作城市ID
 	city: Object,//	工作城市
 	rank_id: String,//	职级ID
+	runTime: String, // 司龄
 	meta: {
 		creatAt: {
 			type: Date,
