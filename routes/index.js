@@ -50,4 +50,6 @@ module.exports = function (app) {
 	app.use('/api', require('./organization/city'))
 	// 组织
 	app.use('/api', require('./staff/employee'))
+	// 系统
+	app.use('/api', require('./system/account'))
 }
