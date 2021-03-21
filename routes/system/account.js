@@ -25,7 +25,19 @@ router.post('/account/add', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-	console.log('req.body', req.body)
+	Account.findOne({ login_name: req.body.login_name }).then((result) => {
+		if (!result) {
+			res.status(200).send(resultConfig.loginErr)
+		}
+		if (result.login_pwd === req.body.login_pwd) {
+			res.status(200).send(Object.assign({}, resultConfig.success, {
+				data: result
+			}))
+		}
+	})
+	// Account.find().then(result => {
+	// 	console.log('result', result)
+	// })
 })
 
 module.exports = router
