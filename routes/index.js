@@ -41,7 +41,6 @@ var funGetContentType = function (filePath) {
 }
 
 module.exports = function (app) {
-	app.use('/api', require('./test'))
 	// 组织
 	app.use('/api', require('./organization/company'))
 	app.use('/api', require('./organization/department'))
