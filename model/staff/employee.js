@@ -26,6 +26,11 @@ let EmployeeSchema = new mongoose.Schema({
 	city: Object,//	工作城市
 	rank_id: String,//	职级ID
 	runTime: String, // 司龄
+	hight_education: Number, // 最高学历
+	politics_status: Number, // 政治面貌
+	nation: String, // 户口类型
+	registered_address: String, // 户籍地址
+	registered_permanent_residence: String, // 户口所在地
 	meta: {
 		creatAt: {
 			type: Date,
