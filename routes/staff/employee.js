@@ -8,7 +8,7 @@ let Category = mongoose.model('Category')
 let City = mongoose.model('City')
 let Company = mongoose.model('Company')
 let Department = mongoose.model('Department')
-const { FindCollectionDataByID, ComputedBalanceDate } = require('../../libs/util')
+const { FindCollectionDataByID, ComputedBalanceDate, ComputedAgeByIdCard, ComputedBirthDateByIdCard } = require('../../libs/util')
 
 // 员工列表
 router.get('/employee/list', (req, res) => {
@@ -41,6 +41,8 @@ router.post('/employee/add', (req, res) => {
 			resolve()
 		})
 	}).then(() => {
+		req.body.age = req.body.card_type === '1' ? String(ComputedAgeByIdCard(req.body.card_num)) : '未知'
+		req.body.birth_date = req.body.card_type === '1' ? String(ComputedBirthDateByIdCard(req.body.card_num)) : ''
 		let employee = new Employee(req.body)
 		employee.save().then(result => {
 			if (result) {
