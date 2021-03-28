@@ -1,4 +1,4 @@
-exports = {
+exports.Select = {
 	// 证件类型
 	card_type: [
 		{ value: '1', label: '居民身份证' },
@@ -24,13 +24,13 @@ exports = {
 	],
 	// 试用期
 	probationPeriodOptions: [
-		{ value: '1', label: '无试用期' },
-		{ value: '2', label: '一个月' },
-		{ value: '3', label: '两个月' },
-		{ value: '4', label: '三个月' },
-		{ value: '5', label: '四个月' },
-		{ value: '6', label: '五个月' },
-		{ value: '7', label: '六个月' },
+		{ value: '1', label: '0' },
+		{ value: '2', label: '30' },
+		{ value: '3', label: '60' },
+		{ value: '4', label: '90' },
+		{ value: '5', label: '120' },
+		{ value: '6', label: '150' },
+		{ value: '7', label: '180' },
 	],
 	// 合同期限
 	contractOptions: [

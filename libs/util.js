@@ -1,4 +1,4 @@
-const Select = require('./selectOptions')
+const { Select } = require('./selectOptions')
 /**
 * 根据ID查询这个类并返对应回数据
 * @param {Object} CollectionObj - 查询得集合
@@ -68,5 +68,42 @@ module.exports.ComputedBirthDateByIdCard = (idCard) => {
 * @returns {String}
 */
 module.exports.ComputedFullMemberDate = (join_time, probation_period) => {
-	return
+	let day = Select.probationPeriodOptions.find(item => item.value === probation_period).label
+	let probation_period_time = new Date(new Date(join_time).getTime() + day * 24 * 60 * 60 * 1000)
+	console.log('toDate(probation_period_time)', toDate(probation_period_time))
+	return toDate(probation_period_time)
+}
+/**
+* 日期转换成字符串格式	附带时分秒
+* @param {Date} date - 需要转换的日期
+* @returns {String}
+*/
+function toDateTime (date) {
+	const nowDate = date;
+	const y = nowDate.getFullYear();
+	let m = nowDate.getMonth() + 1;
+	m = m < 10 ? `0${m}` : m;
+	let d = nowDate.getDate();
+	d = d < 10 ? `0${d}` : d;
+	let h = nowDate.getHours();
+	h = h < 10 ? `0${h}` : h;
+	let min = nowDate.getMinutes();
+	min = min < 10 ? `0${min}` : min;
+	let s = nowDate.getSeconds();
+	s = s < 10 ? `0${s}` : s;
+	return `${y}-${m}-${d} ${h}:${min}:${s}`;
+}
+/**
+* 日期转换成字符串格式
+* @param {Date} date - 需要转换的日期
+* @returns {String}
+*/
+function toDate (date) {
+	const nowDate = date;
+	const y = nowDate.getFullYear();
+	let m = nowDate.getMonth() + 1;
+	m = m < 10 ? `0${m}` : m;
+	let d = nowDate.getDate();
+	d = d < 10 ? `0${d}` : d;
+	return `${y}-${m}-${d}`;
 }

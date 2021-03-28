@@ -17,6 +17,7 @@ let EmployeeSchema = new mongoose.Schema({
 	start_work_time: String,//	开始工作时间
 	join_time: String,//	入职时间
 	probation_period: String,//	试用期
+	full_member_time: String,//	转正日期
 	contract_time: String,//	合同年限
 	company_id: String,//	所属公司/中心ID
 	company: Object,//	所属公司/中心
