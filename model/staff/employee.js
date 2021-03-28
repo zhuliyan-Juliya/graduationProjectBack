@@ -8,6 +8,7 @@ let EmployeeSchema = new mongoose.Schema({
 	show_name: String,//	显示名
 	sex: String,//	性别	1男0女
 	phone: String,//	手机号
+	company_emile: String,//	企业邮箱
 	card_type: String,//	证件类型	前端页面查看
 	card_num: String,//	证件号码
 	age: String,//	年龄
@@ -29,11 +30,17 @@ let EmployeeSchema = new mongoose.Schema({
 	runTime: String, // 司龄
 	hight_education: String, // 最高学历
 	politics_status: String, // 政治面貌
+	marital_status: String, // 婚姻状况
 	nation: String, // 民族
 	registered_type: String, // 户口类型
 	registered_address: String, // 户籍地址
 	registered_permanent_residence: String, // 户口所在地
 	birth_date: String,	// 出生日期
+	postal_address: String,	// 通讯地址
+	family_phone: String,	// 家庭电话
+	person_email: String,	// 个人邮箱
+	qq: String,	// qq
+	weixin: String,	// weixin
 	meta: {
 		creatAt: {
 			type: Date,

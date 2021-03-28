@@ -1,3 +1,4 @@
+const Select = require('./selectOptions')
 /**
 * 根据ID查询这个类并返对应回数据
 * @param {Object} CollectionObj - 查询得集合
@@ -59,4 +60,13 @@ module.exports.ComputedBirthDateByIdCard = (idCard) => {
 		case 18: birth_date = `${idCard.substr(6, 4)}-${idCard.substr(10, 2)}-${idCard.substr(12, 2)}`; break;
 	}
 	return birth_date
+}
+/**
+* 计算转正日期	= 入职日期 + 试用期
+* @param {String} join_time - 入职日期
+* @param {String} probation_period - 试用期
+* @returns {String}
+*/
+module.exports.ComputedFullMemberDate = (join_time, probation_period) => {
+	return
 }

@@ -41,14 +41,30 @@ router.post('/employee/add', (req, res) => {
 			resolve()
 		})
 	}).then(() => {
+		// 年龄
 		req.body.age = req.body.card_type === '1' ? String(ComputedAgeByIdCard(req.body.card_num)) : '未知'
+		// 出生日期
 		req.body.birth_date = req.body.card_type === '1' ? String(ComputedBirthDateByIdCard(req.body.card_num)) : ''
+		// 转正日期
 		let employee = new Employee(req.body)
 		employee.save().then(result => {
 			if (result) {
 				res.status(200).send(resultConfig.success)
 			}
 		})
+	})
+})
+
+// 编辑员工信息
+router.put('/employee/edit', (req, res) => {
+	Employee.findByIdAndUpdate(req.body._id, req.body, (error, updateObj) => {
+		// console.log('error', updateObj)
+		if (error) {
+			res.status(200).send(resultConfig.paramsError)
+			return
+		}
+
+		res.status(200).send(resultConfig.success)
 	})
 })
 
