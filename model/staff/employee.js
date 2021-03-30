@@ -28,7 +28,8 @@ let EmployeeSchema = new mongoose.Schema({
 	city_id: String,//	工作城市ID
 	city: Object,//	工作城市
 	rank_id: String,//	职级ID
-	runTime: String, // 司龄
+	runTime: String, // 司龄	= join_time - new Date
+	workingTime: String, // 工龄 = start_work_time - new Date
 	hight_education: String, // 最高学历
 	politics_status: String, // 政治面貌
 	marital_status: String, // 婚姻状况

@@ -19,7 +19,7 @@ module.exports.FindCollectionDataByID = (CollectionObj, id = '') => {
 	})
 }
 /**
-* 求两个日期之间相差 多少年 多少月 多少天
+* 求指定日期与当前日期相差 多少年 多少月 多少天
 * @param {String} date - 时间格式得字符串
 * @returns {String}
 */
@@ -27,11 +27,11 @@ module.exports.ComputedBalanceDate = (date) => {
 	let target = new Date(date).getTime()
 	let now = new Date().getTime()
 	let runTime = now - target
-	let year = Math.floor(runTime / (365 * 24 * 60 * 60 * 1000))
+	let year = runTime / (365 * 24 * 60 * 60 * 1000) > 0 ? Math.floor(runTime / (365 * 24 * 60 * 60 * 1000)) : Math.ceil(runTime / (365 * 24 * 60 * 60 * 1000))
 	runTime = runTime % (365 * 24 * 60 * 60 * 1000)
-	let month = Math.floor(runTime / (30 * 24 * 60 * 60 * 1000))
+	let month = runTime / (30 * 24 * 60 * 60 * 1000) > 0 ? Math.floor(runTime / (30 * 24 * 60 * 60 * 1000)) : Math.ceil(runTime / (30 * 24 * 60 * 60 * 1000))
 	runTime = runTime % (30 * 24 * 60 * 60 * 1000)
-	let day = Math.floor(runTime / (24 * 60 * 60 * 1000));
+	let day = runTime / (24 * 60 * 60 * 1000) > 0 ? Math.floor(runTime / (24 * 60 * 60 * 1000)) : Math.ceil(runTime / (24 * 60 * 60 * 1000))
 	return `${year}年${month}月${day}天`
 }
 /**
@@ -62,15 +62,13 @@ module.exports.ComputedBirthDateByIdCard = (idCard) => {
 	return birth_date
 }
 /**
-* 计算转正日期	= 入职日期 + 试用期
-* @param {String} join_time - 入职日期
-* @param {String} probation_period - 试用期
+* 计算目标日期	= 初始日期 + 天数
+* @param {String} init_time - 初始日期
+* @param {String} day - 天数
 * @returns {String}
 */
-module.exports.ComputedFullMemberDate = (join_time, probation_period) => {
-	let day = Select.probationPeriodOptions.find(item => item.value === probation_period).label
-	let probation_period_time = new Date(new Date(join_time).getTime() + day * 24 * 60 * 60 * 1000)
-	console.log('toDate(probation_period_time)', toDate(probation_period_time))
+module.exports.ComputedFullMemberDate = (init_time, day) => {
+	let probation_period_time = new Date(new Date(init_time).getTime() + day * 24 * 60 * 60 * 1000)
 	return toDate(probation_period_time)
 }
 /**

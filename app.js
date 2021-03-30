@@ -46,7 +46,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 routes(app)
 
-let port = 5000;
+let port = 3030;
 app.listen(port, () => {
 	console.log(`app is running at port ${port}`);
 })

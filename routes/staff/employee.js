@@ -9,7 +9,7 @@ let City = mongoose.model('City')
 let Company = mongoose.model('Company')
 let Department = mongoose.model('Department')
 const { FindCollectionDataByID, ComputedBalanceDate, ComputedAgeByIdCard, ComputedBirthDateByIdCard, ComputedFullMemberDate } = require('../../libs/util')
-
+const { Select } = require('../../libs/selectOptions')
 // 员工列表
 router.get('/employee/list', (req, res) => {
 	Employee.find().then(result => {
@@ -38,14 +38,19 @@ router.post('/employee/add', (req, res) => {
 			resolve()
 		})
 	}).then(() => {
+		// 合同结束日期
+		req.body.end_of_contract = ComputedBalanceDate(req.body.start_work_time);
+		// 工龄
+		req.body.workingTime = ComputedBalanceDate(req.body.start_work_time);
 		// 司龄
-		req.body.runTime = ComputedBalanceDate(item.join_time);
+		req.body.runTime = ComputedBalanceDate(req.body.join_time);
 		// 年龄
 		req.body.age = req.body.card_type === '1' ? String(ComputedAgeByIdCard(req.body.card_num)) : '未知'
 		// 出生日期
 		req.body.birth_date = req.body.card_type === '1' ? String(ComputedBirthDateByIdCard(req.body.card_num)) : ''
 		// 转正日期
-		req.body.full_member_time = ComputedFullMemberDate(req.body.join_time, req.body.probation_period)
+		let day = Select.probationPeriodOptions.find(item => item.value === req.body.probation_period).label
+		req.body.full_member_time = ComputedFullMemberDate(req.body.join_time, day)
 		let employee = new Employee(req.body)
 		employee.save().then(result => {
 			if (result) {
